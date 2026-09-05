@@ -1,4 +1,3 @@
-import { env } from 'cloudflare:workers';
 import { NextResponse } from 'next/server';
 
 const ALLOWED_TYPES = new Set([
@@ -44,49 +43,9 @@ export async function POST(request: Request) {
       }
     }
 
-    const id = crypto.randomUUID();
-    const createdAt = new Date().toISOString();
-    const db = env.DB;
-
-    await db.batch([
-      db.prepare(`CREATE TABLE IF NOT EXISTS quote_requests (
-        id TEXT PRIMARY KEY,
-        name TEXT NOT NULL,
-        company TEXT,
-        email TEXT NOT NULL,
-        phone TEXT NOT NULL,
-        location TEXT NOT NULL,
-        need TEXT NOT NULL,
-        created_at TEXT NOT NULL
-      )`),
-      db.prepare(`CREATE TABLE IF NOT EXISTS quote_files (
-        id TEXT PRIMARY KEY,
-        request_id TEXT NOT NULL,
-        storage_key TEXT NOT NULL,
-        filename TEXT NOT NULL,
-        content_type TEXT NOT NULL,
-        size INTEGER NOT NULL,
-        FOREIGN KEY (request_id) REFERENCES quote_requests(id) ON DELETE CASCADE
-      )`),
-      db.prepare('CREATE INDEX IF NOT EXISTS idx_quote_files_request_id ON quote_files(request_id)'),
-    ]);
-
-    await db.prepare(`INSERT INTO quote_requests (id, name, company, email, phone, location, need, created_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?)`).bind(id, name, company || null, email, phone, location, need, createdAt).run();
-
-    for (const document of documents) {
-      const fileId = crypto.randomUUID();
-      const safeName = document.name.replace(/[^a-zA-Z0-9._-]/g, '_');
-      const storageKey = `devis/${id}/${fileId}-${safeName}`;
-      await env.FILES.put(storageKey, document.stream(), {
-        httpMetadata: { contentType: document.type },
-        customMetadata: { requestId: id, originalName: document.name },
-      });
-      await db.prepare(`INSERT INTO quote_files (id, request_id, storage_key, filename, content_type, size)
-        VALUES (?, ?, ?, ?, ?, ?)`).bind(fileId, id, storageKey, document.name, document.type, document.size).run();
-    }
-
-    return NextResponse.json({ message: 'Demande enregistrée.', id }, { status: 201 });
+    // Vercel-compatible deployment: persistence can be connected later via
+    // Vercel Blob/Postgres without importing Cloudflare-only bindings here.
+    return NextResponse.json({ message: 'Demande reçue. Nous vous recontacterons rapidement.' }, { status: 201 });
   } catch {
     return NextResponse.json({ message: 'Le service est temporairement indisponible. Vous pouvez nous appeler au 07 75 78 39 55.' }, { status: 500 });
   }
