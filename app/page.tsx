@@ -93,7 +93,7 @@ export default function Home() {
           <p className="hero-lead">TECHNIM accompagne les opérateurs et intégrateurs dans le déploiement, la mesure et la maintenance de leurs infrastructures fibre optique.</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#contact">Demander un devis <ArrowRight size={18} aria-hidden="true" /></a>
-            <a className="button button-secondary" href="mailto:support@technimcontact.fr">Nous contacter</a>
+            <a className="button button-secondary" href="mailto:contact@www.technim-reseaux.fr">Nous contacter</a>
             <a className="button button-link" href="tel:+33775783955"><Phone size={17} aria-hidden="true" /> Appeler</a>
           </div>
           <div className="hero-meta">
@@ -186,7 +186,7 @@ export default function Home() {
           <p>Décrivez-nous votre intervention. Notre équipe étudie votre demande et revient vers vous avec une réponse adaptée.</p>
           <div className="contact-direct">
             <a href="tel:+33775783955"><Phone /><span><small>Appelez-nous</small><strong>07 75 78 39 55</strong></span></a>
-            <a href="mailto:support@technimcontact.fr"><Mail /><span><small>Écrivez-nous</small><strong>support@technimcontact.fr</strong></span></a>
+            <a href="mailto:contact@www.technim-reseaux.fr"><Mail /><span><small>Écrivez-nous</small><strong>contact@www.technim-reseaux.fr</strong></span></a>
           </div>
         </div>
         <ContactForm />
@@ -195,7 +195,7 @@ export default function Home() {
       <footer>
         <div className="footer-brand"><img src="/technim-logo.png" alt="TECHNIM" /><p>Expertise et infrastructure fibre optique.</p></div>
         <div><strong>Navigation</strong><a href="#expertises">Expertises</a><a href="#approche">Notre approche</a><a href="#contact">Demander un devis</a></div>
-        <div><strong>Contact</strong><a href="tel:+33775783955">07 75 78 39 55</a><a href="mailto:support@technimcontact.fr">support@technimcontact.fr</a><span>Île-de-France</span></div>
+        <div><strong>Contact</strong><a href="tel:+33775783955">07 75 78 39 55</a><a href="mailto:contact@www.technim-reseaux.fr">contact@www.technim-reseaux.fr</a><span>Île-de-France</span></div>
         <p className="footer-bottom">© {new Date().getFullYear()} TECHNIM. Tous droits réservés.</p>
       </footer>
     </main>
