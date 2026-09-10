@@ -196,7 +196,7 @@ export default function Home() {
         <div className="footer-brand"><img src="/technim-logo.png" alt="TECHNIM" /><p>Expertise et infrastructure fibre optique.</p></div>
         <div><strong>Navigation</strong><a href="#expertises">Expertises</a><a href="#approche">Notre approche</a><a href="#contact">Demander un devis</a></div>
         <div><strong>Contact</strong><a href="tel:+33775783955">07 75 78 39 55</a><a href="mailto:contact@technim-reseaux.fr">contact@technim-reseaux.fr</a><span>Île-de-France</span></div>
-        <p className="footer-bottom">© {new Date().getFullYear()} TECHNIM. Tous droits réservés.</p>
+        <p className="footer-bottom">© 2024 TECHNIM. Tous droits réservés.</p>
       </footer>
     </main>
   );
